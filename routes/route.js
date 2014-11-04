@@ -1,32 +1,31 @@
-var pasta = require('../models/pasta.js');
+var Menu = require('../models/pasta.js');
+var Qs = require('qs');
 
 exports.getPasta = function(request, response) {
-console.log(user);
-response.end("The user is "+user.username+" and the requested info is "+user.userinfo+" with value "+user.uservalue);
-// response.end("The user is "+request.temp.username+" and the requested info is "+request.temp.userinfo+" and the value is "+request.temp.uservalue);
+	//idk if this is called this way?
+	var pasta = Menu.Menu.findPasta(request.params.name);
+	response.end("The Pasta is " + pasta.name + " which is made with " + pasta.noodle 
+		+ " with the sauce " + pasta.sauce);
 }
 
 exports.putPasta = function(request, response) {
+	Menu.menu.createPasta(response.params.name, response.params.noodle, response.params.sauce);
+	response.end("Adding the pasta "+response.params.name+ " which is made with " +
+			response.params.noodle+" with sauce "+response.params.sauce);
+}
 
-// var menu = new menu();
-var temp = new pasta.Pasta(request.params.name, request.params.noodle, request.params.sauce);
-
-// menu.add(temp);
-
-// console.log(menu);
-console.log(temp);
-
-module.exports.menu; 
-response.end("Adding the pasta "+temp.name+" and the noodle"+temp.noodle+" with sauce "+user.sauce);
+exports.postPasta = function(request, response) {
+	var pasta = Menu.menu.updatePasta(response.params.oldname, response.params.newname, 
+		response.params.noodle, response.params.sauce);
+	response.end("Updating the pasta "+response.params.oldname+ "to " + pasta.name +  " which is made with " +
+			pasta.noodle+" with sauce "+pasta.sauce);
 
 }
 
+exports.deletePasta = function(request, response) {
+	var pasta = Menu.Menu.findPasta(request.params.name);
+	Menu.Menu.deletePasta(request.params.name);
+	response.end("The Pasta you DELETED is " + pasta.name + " which is made with " + pasta.noodle 
+		+ " with the sauce " + pasta.sauce);
+}
 
-// 	function user(username,userinfo,uservalue){
-// 	this.username = username;
-// 	this.userinfo = userinfo;
-// 	this.uservalue = uservalue;
-// }
-
-
-// var temp = new user(request.params.username, request.params.userinfo, request.params.uservalue);

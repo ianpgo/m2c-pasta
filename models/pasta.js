@@ -55,7 +55,7 @@ Menu.prototype.updatePasta = function(oldName, newName, newNoodle, newSauce){
 
 	this.menu[index]=tempPasta;
 
-	return this.getMenu();
+	return this.menu[index];
 }
 
 module.exports.menu;

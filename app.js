@@ -23,9 +23,13 @@ app.get("/say",function (request,response){
 	response.end(request.query.greeting + " " + request.query.to);
   });
 
-app.get("/pasta/:name/:noodle/:sauce", pastaRoutes.getPasta);
+app.get("/pasta/:name", pastaRoutes.getPasta);
 
 app.put("/pasta/:name/:noodle/:sauce", pastaRoutes.putPasta);
+
+app.post("/pasta/:oldname/:newname/:noodle/:sauce", pastaRoutes.postPasta);
+
+app.delete("/pasta/:name", pastaRoutes.deletePasta);
 
 
 app.put("/hi", function (request, response) {
