@@ -1,41 +1,78 @@
+$(function(){
+  $("#findPasta").submit(function(event){
 
-$("#Fbutton").click(function(){
+    var name = $("#Fname").val(); //takes number of name from form
 
-  var name = $("#Fname").val(); //takes number of name from form
+      event.preventDefault();
 
-    $.getJSON("/pastafind/"+name,function(data){ 
-      $("#responseArea").html(data);
-    })
-});
+      $.ajax({
+        url:"/pastaFind/"+name,
+        type:'GET',
+        success: function(data){
+          var resultName = data.name;
+          var resultNoodle = data.noodle;
+          var resultSauce = data.sauce; 
+          $("#responseArea").html("Found a pasta named " +resultName+" with "+resultNoodle+" noodles and "+resultSauce+" sauce");
+        }
+      });
+  });
 
-$("#Cbutton").click(function(){
+  $("#createPasta").submit(function(event){
 
-  var name = $("#Cname").val(); //takes number of innings from form
-  var noodle = $("#Cnoodle").val(); //takes number of runs from form 
-  var sauce = $("#Csauce").val();
+    var name = $("#Cname").val(); //takes number of innings from form
+    var noodle = $("#Cnoodle").val(); //takes number of runs from form 
+    var sauce = $("#Csauce").val();
 
-    $.getJSON("/pasta/"+name+"/"+noodle+"/"+sauce,function(data){ 
-      $("#responseArea").html(data);
-    })
-});
+        event.preventDefault();
 
-$("#Ubutton").click(function(){
+      $.ajax({
+        url:"/pastaCreate/"+name+"/"+noodle+"/"+sauce,
+        type:'PUT',
+        success: function(data){
+          var resultName = data.name;
+          var resultNoodle = data.noodle;
+          var resultSauce = data.sauce; 
+          $("#responseArea").html("Added a pasta named " +resultName+" with "+resultNoodle+" noodles and "+resultSauce+" sauce");
+        }
+      });
+  });
 
-  var oldname = $("#Uoldname").val();
-  var newname = $("#Unewname").val(); //takes number of innings from form
-  var noodle = $("#Unoodle").val(); //takes number of runs from form 
-  var sauce = $("#Usauce").val();
+  $("#updatePasta").submit(function(event){
 
-    $.getJSON("/pasta/"+oldname+"/"+newname+"/"+noodle+"/"+sauce,function(data){ 
-      $("#responseArea").html(data);
-    })
-});
+    var oldname = $("#Uoldname").val();
+    var newname = $("#Unewname").val(); //takes number of innings from form
+    var noodle = $("#Unoodle").val(); //takes number of runs from form 
+    var sauce = $("#Usauce").val();
 
-$("#Dbutton").click(function(){
+      event.preventDefault();
 
-  var name = $("#Dname").val(); //takes number of name from form
+      $.ajax({
+        url:"/pastaUpdate/"+oldname+"/"+newname+"/"+noodle+"/"+sauce,
+        type:'POST',
+        success: function(data){
+          var resultName = data.name;
+          var resultNoodle = data.noodle;
+          var resultSauce = data.sauce; 
+          $("#responseArea").html("Updated pasta "+oldname+" with a pasta named " +resultName+" with "+resultNoodle+" noodles and "+resultSauce+" sauce");
+        }
+      });
+  });
 
-    $.getJSON("/pastadelete/"+name,function(data){ 
-      $("#responseArea").html(data);
-    })
+  $("#deletePasta").submit(function(event){
+
+    var name = $("#Dname").val(); //takes number of name from form
+
+      event.preventDefault();
+
+      $.ajax({
+        url:"/pastaDelete/"+name,
+        type:'DELETE',
+        success: function(data){
+          var resultName = data.name;
+          var resultNoodle = data.noodle;
+          var resultSauce = data.sauce; 
+          $("#responseArea").html("Deleted pasta named "+resultName+" with "+resultNoodle+" noodles and "+resultSauce+" sauce");
+        }
+      });
+  });
 });

@@ -14,22 +14,21 @@
 <h1>Pasta Editor</h1>
 
 <h6>Find Pasta</h6>
-<form name="input" method:"POST">
+<form id="findPasta" name="input" method:"GET">
 Name: <input type="text" name="Fname" id="Fname"> </br>
 <input type="submit" value="Submit" id="Fbutton">
 </form>
 
 <h6>Create Pasta</h6>
-<form name="input" method:"PUT">
+<form id="createPasta" name="input">
 Name: <input type="text" name="Cname" id="Cname"> </br>
 Noodle: <input type="text" name="Cnoodle" id="Cnoodle"> </br>
 Sauce: <input type="text" name="Csauce" id="Csauce"> </br>
 <input type="submit" value="Submit" id="Cbutton">
 </form>
 
-
 <h6>Update Pasta</h6>
-<form name="input" method:"POST">
+<form id="updatePasta" name="input" method:"POST">
 Old Name: <input type="text" name="Uoldname" id="Uoldname"> </br>
 New Name: <input type="text" name="Unewname" id="Unewname"> </br>
 Noodle: <input type="text" name="Unoodle" id="Unoodle"> </br>
@@ -39,7 +38,7 @@ Sauce: <input type="text" name="Usauce" id="Usauce"> </br>
 
 
 <h6>Delete Pasta</h6>
-<form name="input" method:"POST">
+<form id="deletePasta" name="input" method:"DELETE">
 Name: <input type="text" name="Dname" id="Dname"> </br>
 <input type="submit" value="Submit" id="Dbutton">
 </form>
