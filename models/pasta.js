@@ -2,14 +2,13 @@
 //constructor of menu class, defines pasta object 
 function Menu(){
 	this.menu = [];
+}
 
 	var Pasta = function(name, noodle, sauce){
 	this.name = name;
 	this.noodle = noodle; 
 	this.sauce = sauce; 
 	};
-
-}
 
 //returns menu array of pastas
 Menu.prototype.getMenu = function(){
@@ -58,5 +57,5 @@ Menu.prototype.updatePasta = function(oldName, newName, newNoodle, newSauce){
 	return this.menu[index];
 }
 
-module.exports.menu;
+module.exports = Menu;
 

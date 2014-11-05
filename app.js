@@ -1,7 +1,6 @@
 var express = require("express");
 var morgan = require('morgan');
 var pastaRoutes = require('./routes/route.js');
-var pastaModel = require('./models/pasta.js');
 
 var app = express();
 /*
@@ -23,13 +22,13 @@ app.get("/say",function (request,response){
 	response.end(request.query.greeting + " " + request.query.to);
   });
 
-app.get("/pastafind/:name", pastaRoutes.getPasta);
+app.get("/pastaFind/:name", pastaRoutes.getPasta);
 
-app.put("/pasta/:name/:noodle/:sauce", pastaRoutes.putPasta);
+app.put("/pastaCreate/:name/:noodle/:sauce", pastaRoutes.putPasta);
 
-app.post("/pasta/:oldname/:newname/:noodle/:sauce", pastaRoutes.postPasta);
+app.post("/pastaUpdate/:oldname/:newname/:noodle/:sauce", pastaRoutes.postPasta);
 
-app.delete("/pastadelete/:name", pastaRoutes.deletePasta);
+app.delete("/pastaDelete/:name", pastaRoutes.deletePasta);
 
 
 app.put("/hi", function (request, response) {

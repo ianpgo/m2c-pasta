@@ -1,31 +1,35 @@
-var Menu = require('../models/pasta.js');
+var menuMod = require('../models/pasta.js');
 var Qs = require('qs');
+
+var menu = new menuMod();
 
 exports.getPasta = function(request, response) {
 	//idk if this is called this way?
-	var pasta = Menu.Menu.findPasta(request.params.name);
+	var pasta = menu.findPasta(request.params.name);
 	response.end("The Pasta is " + pasta.name + " which is made with " + pasta.noodle 
 		+ " with the sauce " + pasta.sauce);
 }
 
 exports.putPasta = function(request, response) {
-	Menu.menu.createPasta(response.params.name, response.params.noodle, response.params.sauce);
-	response.end("Adding the pasta "+response.params.name+ " which is made with " +
-			response.params.noodle+" with sauce "+response.params.sauce);
+	menu.createPasta(request.params.name, request.params.noodle, request.params.sauce);
+	console.log(menu.getMenu());
+	response.end("Adding the pasta "+request.params.name+ " which is made with " +
+			request.params.noodle+" with sauce "+request.params.sauce);
 }
 
 exports.postPasta = function(request, response) {
-	var pasta = Menu.menu.updatePasta(response.params.oldname, response.params.newname, 
-		response.params.noodle, response.params.sauce);
-	response.end("Updating the pasta "+response.params.oldname+ "to " + pasta.name +  " which is made with " +
-			pasta.noodle+" with sauce "+pasta.sauce);
+	menu.updatePasta(request.params.oldname, request.params.newname, request.params.noodle, request.params.sauce);
+	console.log(menu.getMenu());
+	response.end("Updating the pasta "+request.params.oldname + " to " + request.params.newname +  " which is made with " +
+			request.params.noodle+" with sauce "+request.params.sauce);
 
 }
 
 exports.deletePasta = function(request, response) {
-	var pasta = Menu.Menu.findPasta(request.params.name);
-	Menu.Menu.deletePasta(request.params.name);
+	var pasta = menu.findPasta(request.params.name);
+	menu.deletePasta(request.params.name);
 	response.end("The Pasta you DELETED is " + pasta.name + " which is made with " + pasta.noodle 
 		+ " with the sauce " + pasta.sauce);
+	console.log(menu.getMenu());
 }
 
