@@ -1,11 +1,14 @@
 $(function(){
+
   $("#findPasta").submit(function(event){
 
     var name = $("#Fname").val(); //takes number of name from form
 
+      //to prevent default GET call
       event.preventDefault();
 
       $.ajax({
+        //creates route for pastaFind
         url:"/pastaFind/"+name,
         type:'GET',
         success: function(data){
@@ -19,13 +22,15 @@ $(function(){
 
   $("#createPasta").submit(function(event){
 
-    var name = $("#Cname").val(); //takes number of innings from form
-    var noodle = $("#Cnoodle").val(); //takes number of runs from form 
+    var name = $("#Cname").val();
+    var noodle = $("#Cnoodle").val();
     var sauce = $("#Csauce").val();
 
+        //to prevent default GET call
         event.preventDefault();
 
       $.ajax({
+        //creates route for pastaCreate
         url:"/pastaCreate/"+name+"/"+noodle+"/"+sauce,
         type:'PUT',
         success: function(data){
@@ -40,13 +45,15 @@ $(function(){
   $("#updatePasta").submit(function(event){
 
     var oldname = $("#Uoldname").val();
-    var newname = $("#Unewname").val(); //takes number of innings from form
-    var noodle = $("#Unoodle").val(); //takes number of runs from form 
+    var newname = $("#Unewname").val();
+    var noodle = $("#Unoodle").val(); 
     var sauce = $("#Usauce").val();
 
+      //to prevent default GET call
       event.preventDefault();
 
       $.ajax({
+        //creates route for pastaPost
         url:"/pastaUpdate/"+oldname+"/"+newname+"/"+noodle+"/"+sauce,
         type:'POST',
         success: function(data){
@@ -60,11 +67,13 @@ $(function(){
 
   $("#deletePasta").submit(function(event){
 
-    var name = $("#Dname").val(); //takes number of name from form
+    var name = $("#Dname").val();
 
+      //to prevent default GET call
       event.preventDefault();
 
       $.ajax({
+        //creates route for pastaDelete
         url:"/pastaDelete/"+name,
         type:'DELETE',
         success: function(data){
