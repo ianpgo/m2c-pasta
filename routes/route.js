@@ -11,7 +11,7 @@ exports.getPasta = function(request, response) {
 	}
 	else if (typeof request.params.name === 'undefined') {
 		var pastaList = menu.getMenu();
-		response.send(pastaList);
+		response.render("index", {"pastaList" : pastaList});
 	}
 	else {
 		response.send("Error Brah")

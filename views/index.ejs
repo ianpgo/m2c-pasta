@@ -1,0 +1,14 @@
+<table>
+	<tr>
+	<td>Pasta Name</td>
+	<td>Pasta Noodle</td>
+	<td>Pasta Sauce</td>
+	</tr> 
+	<%for (var i = 0; i < pastaList.length; i++) {%>
+	<tr>
+	<td><%=pastaList[i].name%></td>
+	<td><%=pastaList[i].noodle%></td>
+	<td><%=pastaList[i].sauce%></td>
+	</tr> 
+	<%};%>
+</table>

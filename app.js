@@ -8,19 +8,16 @@ var app = express();
  * do the callback that sends as the response "hello world"
  */
 
-app.use(morgan('common'))
+app.use(morgan('dev'));
 
-app.get('/', function (req, res) {
-  res.send('hello, world!')
-})
+app.use(express.static(__dirname + '/public'));
 
-app.get("/hi", function (request, response) {
-  response.end("hello world");
-  });
+// Set the views directory
+app.set('views', __dirname + '/views');
 
-app.get("/say",function (request,response){
-	response.end(request.query.greeting + " " + request.query.to);
-  });
+// Define the view (templating) engine
+app.set('view engine', 'ejs');
+
 
 app.get("/pastaFind/:name?", pastaRoutes.getPasta);
 
@@ -29,17 +26,6 @@ app.put("/pastaCreate/:name/:noodle/:sauce", pastaRoutes.putPasta);
 app.post("/pastaUpdate/:oldname/:newname/:noodle/:sauce", pastaRoutes.postPasta);
 
 app.delete("/pastaDelete/:name", pastaRoutes.deletePasta);
-
-
-app.put("/hi", function (request, response) {
-response.end("Hi route from PUT request");
-  });
-
-app.get("/bye", function (request, response) {
-  response.end("Toodliedoo!");
-  });
-
-app.use(express.static(__dirname + '/public'));
 
   app.listen(50000);
 console.log("Server listening at http://localhost:50000/");
