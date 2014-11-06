@@ -5,8 +5,17 @@ var menu = new menuMod();
 
 exports.getPasta = function(request, response) {
 	//stores pasta object of found pasta
-	var pasta = menu.findPasta(request.params.name);
-	response.send(pasta); //sends pasta object to client
+	if (typeof request.params.name !== 'undefined') { 
+		var pasta = menu.findPasta(request.params.name);
+		response.send(pasta); //sends pasta object to client
+	}
+	else if (typeof request.params.name === 'undefined') {
+		var pastaList = menu.getMenu();
+		response.send(pastaList);
+	}
+	else {
+		response.send("Error Brah")
+	}
 }
 
 exports.putPasta = function(request, response) {

@@ -12,10 +12,22 @@ $(function(){
         url:"/pastaFind/"+name,
         type:'GET',
         success: function(data){
-          var resultName = data.name;
-          var resultNoodle = data.noodle;
-          var resultSauce = data.sauce; 
-          $("#responseArea").html("Found a pasta named " +resultName+" with "+resultNoodle+" noodles and "+resultSauce+" sauce");
+          if (data.length > 1) {
+            for (var i = data.length - 1; i >= 0; i--) {
+              var resultName = data[i].name;
+              var resultNoodle = data[i].noodle;
+              var resultSauce = data[i].sauce; 
+              $("#responseArea").append("Found a pasta named " +resultName+" with "+resultNoodle+" noodles and "+resultSauce+" sauce. ");
+            };
+          } else if (data.length == 1){
+              var resultName = data[0].name;
+              var resultNoodle = data[0].noodle;
+              var resultSauce = data[0].sauce; 
+              $("#responseArea").html("Found a pasta named " +resultName+" with "+resultNoodle+" noodles and "+resultSauce+" sauce");
+          }else{
+              $("#responseArea").html("No Pasta Found!");
+          }
+          
         }
       });
   });

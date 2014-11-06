@@ -22,7 +22,7 @@ app.get("/say",function (request,response){
 	response.end(request.query.greeting + " " + request.query.to);
   });
 
-app.get("/pastaFind/:name", pastaRoutes.getPasta);
+app.get("/pastaFind/:name?", pastaRoutes.getPasta);
 
 app.put("/pastaCreate/:name/:noodle/:sauce", pastaRoutes.putPasta);
 
